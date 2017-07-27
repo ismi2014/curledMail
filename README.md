@@ -4,16 +4,16 @@ Usage example:
 --------------
 
 ```js
-const curledMail = require('curledmail');
+const CurledMail = require('curledmail');
 
 // add a email account and connect it to its SMTP server
-const curledAccount = new curledMail({
+const curledAccount = new CurledMail({
     user: 'username@domain.com',
     password: 'PA55W0RD'
 });
 
 // add a message template with mustaches
-curledMail.addTemplate('weekly', {
+curledAccount.addTemplate('weekly', {
     from:    "{{appname}}",
     to:      "{{username}} <{{email}}>",
     subject: "Testing curlyMail",
@@ -36,7 +36,7 @@ let data = {
 };
 
 // send a message
-let response = curledMail.send('weekly', data);
+let response = curledAccount.send('weekly', data);
 ```
 
 

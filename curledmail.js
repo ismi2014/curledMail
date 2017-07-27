@@ -4,7 +4,7 @@ const hogan = require('hogan.js'),
 
 // compile templates in a object
 function getCompiledObj(obj) {
-	var fns = {},
+	let fns = {},
 		i;
 	for (i in obj) {
 		fns[i] = hogan.compile( obj[i] );
