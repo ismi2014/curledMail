@@ -189,4 +189,4 @@ class CurledMail extends Account {
   }
 }
 
-module.exports = CurledMail;
+module.exports = { CurledMail };
