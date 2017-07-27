@@ -4,10 +4,9 @@ const hogan = require('hogan.js'),
 
 // compile templates in a object
 function getCompiledObj(obj) {
-	let fns = {},
-		i;
-	for (i in obj) {
-		fns[i] = hogan.compile( obj[i] );
+	let fns = {};
+	for (let i in obj) {
+		fns[i] = hogan.compile(obj[i]);
 	}
 	return fns;
 };
@@ -15,7 +14,7 @@ function getCompiledObj(obj) {
 // compile templates in objects in an array
 function getCompiledArr(arr) {
 	return arr.map( function (el) {
-		return getCompiledObj( el );
+		return getCompiledObj(el);
 	});
 };
 
@@ -33,17 +32,17 @@ class Template {
   }
 
   render(data) {
-    let msg = {}, i;
+    let msg = {};
 
-    for (i in this.src) {
+    for (let i in this.src) {
       msg[i] = this.compiled[i].render(data);
     }
 
     msg.attachment = [];
 
     this.attachments.forEach((att) => {
-      let rendered = {}, i;
-      for (i in att) {
+      let rendered = {};
+      for (let i in att) {
         rendered[i] = att[i].render(data);
       }
 
