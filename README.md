@@ -36,7 +36,7 @@ let data = {
 };
 
 // send a message
-let response = curledAccount.send('weekly', data);
+let response = await curledAccount.send('weekly', data);
 ```
 
 
