@@ -1,21 +1,21 @@
 const hogan = require('hogan.js'),
-	emailjs = require('emailjs'),
-	html2text = require('./html2text.js');
+  emailjs = require('emailjs'),
+  html2text = require('./html2text.js');
 
 // compile templates in a object
 function getCompiledObj(obj) {
-	let fns = {};
-	for (let i in obj) {
-		fns[i] = hogan.compile(obj[i]);
-	}
-	return fns;
+  let fns = {};
+  for (let i in obj) {
+    fns[i] = hogan.compile(obj[i]);
+  }
+  return fns;
 };
 
 // compile templates in objects in an array
 function getCompiledArr(arr) {
-	return arr.map( function (el) {
-		return getCompiledObj(el);
-	});
+  return arr.map( function (el) {
+    return getCompiledObj(el);
+  });
 };
 
 // message template
@@ -61,21 +61,21 @@ class Template {
       });
 
       // add plain text message if does not exist
-  		if (!msg.text) {
-  			msg.text = html2text(msg.html);
-  		}
+      if (!msg.text) {
+        msg.text = html2text(msg.html);
+      }
 
-  		delete msg.html;
+      delete msg.html;
     }
 
     // add attachments from data _attachments
-  	if (data._attachments) {
-  		data._attachments.forEach( function (att) {
-  			msg.attachment.push( att );
-  		});
-  	}
+    if (data._attachments) {
+      data._attachments.forEach( function (att) {
+        msg.attachment.push( att );
+      });
+    }
 
-  	return msg;
+    return msg;
   }
 }
 
@@ -139,9 +139,9 @@ class Account {
  */
 class CurledMail extends Account {
   constructor(options) {
-  	if (typeof options !== 'object') {
-  		throw new Error( 'asyncCurlyMail account has to be an object.' );
-  	}
+    if (typeof options !== 'object') {
+      throw new Error( 'asyncCurlyMail account has to be an object.' );
+    }
 
     super(options);
     this.templates = {};
@@ -176,8 +176,8 @@ class CurledMail extends Account {
    */
   async send(templateKey, data) {
     if (typeof templateKey !== 'string' || !templateKey) {
-  		throw new Error('Invalid template.');
-  	}
+      throw new Error('Invalid template.');
+    }
 
     let template = this.templates[templateKey];
     let response;
