@@ -20,7 +20,7 @@ function getCompiledArr(arr) {
 };
 
 // message template
-class Template() {
+class Template {
   constructor(template) {
     if (template.attachments) {
       this.attachments = getCompiledArr(template.attachments);
@@ -49,6 +49,10 @@ class Template() {
 
       msg.attachment.push(rendered);
     });
+
+    if (!msg.attachments) {
+      msg.attachments = [];
+    }
 
     //attach html message
     if (msg.html) {
@@ -172,7 +176,7 @@ class CurledMail extends Account {
    * @return response from emailjs.
    */
   async send(templateKey, data) {
-    if (templateKey typeof !== 'string' || !templateKey) {
+    if (typeof templateKey !== 'string' || !templateKey) {
   		throw new Error('Invalid template.');
   	}
 
@@ -180,7 +184,7 @@ class CurledMail extends Account {
     let response;
 
     try {
-      respone = await this._sendMail(template.render(data));
+      response = await this._sendMail(template.render(data));
     } catch (e) {
       response = e;
     }
@@ -189,4 +193,4 @@ class CurledMail extends Account {
   }
 }
 
-module.exports = { CurledMail };
+module.exports = CurledMail;
