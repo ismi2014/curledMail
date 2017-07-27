@@ -1,7 +1,0 @@
-{
-    "user": "nickname@domain.com",
-    "password": "yourPassword",
-    "host": "smtp.gmail.com",
-    "ssl": true,
-    "to": "destiny@domain.com"
-}
